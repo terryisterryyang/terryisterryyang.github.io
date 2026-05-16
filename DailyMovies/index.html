@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日电影推荐 - 技术支持</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0D1117 0%, #161B22 100%);
+            color: #E6EDF3;
+            line-height: 1.8;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(22, 27, 34, 0.8);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(240, 180, 41, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(240, 180, 41, 0.2);
+        }
+        
+        .app-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: #F0B429;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #8B949E;
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            font-size: 20px;
+            color: #F0B429;
+            margin: 32px 0 16px 0;
+            padding-left: 16px;
+            border-left: 4px solid #F0B429;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 16px;
+            color: #FFB84D;
+            margin: 24px 0 12px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin: 12px 0;
+            color: #C9D1D9;
+            font-size: 15px;
+        }
+        
+        ul {
+            margin: 12px 0 12px 24px;
+            color: #C9D1D9;
+        }
+        
+        li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+        
+        .highlight {
+            background: rgba(240, 180, 41, 0.1);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+            border-left: 3px solid #F0B429;
+        }
+        
+        .highlight p {
+            margin: 0;
+            color: #E6EDF3;
+        }
+        
+        .faq-card {
+            background: rgba(22, 27, 34, 0.6);
+            border: 1px solid rgba(240, 180, 41, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-card:hover {
+            border-color: rgba(240, 180, 41, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .faq-question {
+            font-size: 16px;
+            color: #FFB84D;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .faq-question::before {
+            content: "Q";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: rgba(240, 180, 41, 0.2);
+            color: #F0B429;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+        
+        .faq-answer {
+            font-size: 15px;
+            color: #C9D1D9;
+            padding-left: 36px;
+            line-height: 1.7;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, rgba(240, 180, 41, 0.1) 0%, rgba(255, 184, 77, 0.05) 100%);
+            border: 1px solid rgba(240, 180, 41, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 12px 0;
+        }
+        
+        .feature-card h3 {
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-card h3::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #F0B429;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        
+        .feature-card p {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+        }
+        
+        .contact-box {
+            background: linear-gradient(135deg, rgba(240, 180, 41, 0.15) 0%, rgba(255, 184, 77, 0.1) 100%);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 32px;
+            text-align: center;
+            border: 1px solid rgba(240, 180, 41, 0.3);
+        }
+        
+        .contact-box h3 {
+            color: #F0B429;
+            margin: 0 0 12px 0;
+            border: none;
+            padding: 0;
+        }
+        
+        .contact-box p {
+            color: #E6EDF3;
+            margin: 8px 0;
+        }
+        
+        .contact-box a {
+            color: #F0B429;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(240, 180, 41, 0.2);
+            text-align: center;
+            font-size: 13px;
+            color: #8B949E;
+        }
+        
+        .section {
+            margin-bottom: 24px;
+        }
+        
+        strong {
+            color: #FFB84D;
+            font-weight: 600;
+        }
+        
+        .tip-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 3px solid #38BDF8;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        
+        .tip-box p {
+            margin: 0;
+            color: #E6EDF3;
+        }
+        
+        .tip-box::before {
+            content: "💡 ";
+        }
+        
+        .link-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #F0B429 0%, #FFB84D 100%);
+            color: #0D1117;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(240, 180, 41, 0.4);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 18px;
+            }
+            
+            body {
+                padding: 20px 16px;
+            }
+            
+            .faq-card {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="app-icon">🎬</div>
+            <h1>每日电影推荐</h1>
+            <p class="subtitle">技术支持中心</p>
+        </div>
+
+        <div class="section">
+            <p>欢迎使用每日电影推荐！这是一款以<strong>视觉美学</strong>为核心的联网电影推荐应用。我们致力于为您带来每日精选的电影推荐，让您发现更多精彩影片。</p>
+        </div>
+
+        <h2>📱 App功能介绍</h2>
+        
+        <div class="feature-card">
+            <h3>每日推荐</h3>
+            <p>每天为您精选一部值得观看的电影，搭配精美的海报展示，让您每天都能发现新的惊喜。</p>
+        </div>
+        
+        <div class="feature-card">
+            <h3>电影库浏览</h3>
+            <p>浏览丰富的电影库，查看电影的详细信息，包括剧情简介、评分、上映时间等。</p>
+        </div>
+        
+        <div class="feature-card">
+            <h3>收藏功能</h3>
+            <p>遇到喜欢的电影？一键收藏，随时在"我的"页面查看您的收藏列表。</p>
+        </div>
+        
+        <div class="feature-card">
+            <h3>分享功能</h3>
+            <p>发现好电影想要分享给朋友？使用分享功能，将电影信息分享到其他应用。</p>
+        </div>
+
+        <h2>❓ 常见问题（FAQ）</h2>
+        
+        <div class="faq-card">
+            <div class="faq-question">无法加载电影数据？</div>
+            <div class="faq-answer">请检查您的网络连接是否正常。本应用需要联网才能获取云端电影数据。如果网络正常但仍无法加载，请尝试重启应用或稍后再试。</div>
+        </div>
+        
+        <div class="faq-card">
+            <div class="faq-question">电影海报图片加载不出来？</div>
+            <div class="faq-answer">这通常是由于网络问题导致的。请检查网络连接，或在设置中清除应用缓存后重试。图片加载会消耗一定的流量，建议在Wi-Fi环境下使用。</div>
+        </div>
+        
+        <div class="faq-card">
+            <div class="faq-question">如何收藏电影？</div>
+            <div class="faq-answer">在电影详情页面，点击收藏按钮（通常是一个心形图标）即可将电影添加到您的收藏列表。收藏成功后，图标会变为已收藏状态。</div>
+        </div>
+        
+        <div class="faq-card">
+            <div class="faq-question">如何查看已收藏的电影？</div>
+            <div class="faq-answer">进入应用底部的"我的"页面，您可以在收藏列表中查看所有已收藏的电影。点击任意电影即可查看详细信息。</div>
+        </div>
+        
+        <div class="faq-card">
+            <div class="faq-question">如何分享电影？</div>
+            <div class="faq-answer">在电影详情页面，点击分享按钮（通常是一个分享图标），系统会弹出分享菜单。选择您想要分享到的应用即可完成分享。</div>
+        </div>
+        
+        <div class="faq-card">
+            <div class="faq-question">我的收藏数据会丢失吗？</div>
+            <div class="faq-answer">不会。您的收藏数据使用Hive本地数据库存储在您的设备上，不会因为应用更新或网络问题而丢失。但请注意，如果您卸载应用或清除应用数据，收藏将会被清除。</div>
+        </div>
+
+        <h2>💡 使用建议</h2>
+        
+        <div class="tip-box">
+            <p><strong>网络环境：</strong>建议在稳定的网络环境下使用本应用，以获得最佳的图片加载体验。</p>
+        </div>
+        
+        <div class="tip-box">
+            <p><strong>缓存管理：</strong>如果应用占用空间较大，您可以在系统设置中清除应用缓存来释放空间。清除缓存不会影响您的收藏数据。</p>
+        </div>
+        
+        <div class="tip-box">
+            <p><strong>数据备份：</strong>目前收藏数据仅存储在本地设备。如需更换设备，建议手动记录您收藏的电影，或联系开发者获取备份方案。</p>
+        </div>
+        
+        <div class="tip-box">
+            <p><strong>每日推荐：</strong>每天打开应用，查看最新的每日推荐，发现更多精彩电影！</p>
+        </div>
+
+        <h2>🔗 相关链接</h2>
+        
+        <div class="highlight">
+            <p><strong>隐私政策：</strong>了解我们如何保护您的个人信息</p>
+            <a href="privacy_policy.html" class="link-button">查看隐私政策</a>
+        </div>
+
+        <h2>📧 联系开发者</h2>
+        
+        <div class="contact-box">
+            <h3>我们需要您的反馈</h3>
+            <p>如果您在使用过程中遇到任何问题，或有功能建议，欢迎联系我们：</p>
+            <p><strong>邮箱：</strong><a href="mailto:taoyang10086@163.com">taoyang10086@163.com</a></p>
+            <p style="margin-top: 16px; font-size: 13px; color: #8B949E;">请在邮件中说明您遇到的问题或建议，我们会在收到邮件后尽快回复。</p>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 每日电影推荐 版权所有</p>
+            <p style="margin-top: 8px;">让每一部电影都值得被看见 🎬</p>
+        </div>
+    </div>
+</body>
+</html>
